@@ -1,0 +1,4 @@
+
+get_mask_card_number ok
+get_mask_card_number error: Неправильный номер карты. Inputs: 12345
+get_mask_card_number error: Неправильный номер карты. Inputs: 12345678123456AB
