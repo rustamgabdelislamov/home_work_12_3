@@ -24,7 +24,6 @@ def convert_to_rub(transactions: list[dict]) -> list[dict]:
                 headers = {
                     "apikey": API_KEY
                 }
-                print(f"API Key перед запросом: {API_KEY}")
                 response = requests.request("GET", url, headers=headers, data=payload)
 
                 status_code = response.status_code
@@ -37,12 +36,12 @@ def convert_to_rub(transactions: list[dict]) -> list[dict]:
                     except Exception as f:
                         print(f'Проблема с сервером')
             except Exception as e:
-                print(f"Ошибка при запросе к API: {type(e).__name__} - {str(e)}")
+                print(f'Ошибка {e}')
         return transactions
 
 
 
 
-transactions_list = get_accepts_the_transaction('../../../h_12_1/data/operations.json')
+transactions_list = get_accepts_the_transaction('../data/operations.json')
 print(convert_to_rub(transactions_list))
 
