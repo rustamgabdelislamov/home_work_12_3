@@ -45,3 +45,4 @@ def convert_to_rub(transactions: list[dict]) -> list[dict]:
 transactions_list = get_accepts_the_transaction('../data/operations.json')
 print(convert_to_rub(transactions_list))
 
+
