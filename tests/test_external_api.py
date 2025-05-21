@@ -2,8 +2,6 @@ from unittest.mock import patch
 
 import pytest
 
-from src.utils import transactions_list
-
 from src.external_api import get_currency_usd_or_euro, convert_to_rub
 
 

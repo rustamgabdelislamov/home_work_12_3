@@ -2,17 +2,13 @@ import os
 from dotenv import load_dotenv
 import requests
 
-from src.utils import transactions_list
-
-
 load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
 
 
 def get_currency_usd_or_euro(transaction: dict) -> float | str:
-
-
+    """Функция конвертации валюты если валюта не рубли"""
     try:
         currency = transaction["operationAmount"]["currency"]["code"]
         rub = "RUB"
@@ -26,7 +22,7 @@ def get_currency_usd_or_euro(transaction: dict) -> float | str:
         response = requests.request("GET", url, headers=headers, data=payload)
 
         if response.status_code != 200:
-            raise Exception(f"Ошибка запроса к API")
+            raise Exception("Ошибка запроса к API")
         try:
             result = response.json()
             return result["result"]
@@ -36,16 +32,15 @@ def get_currency_usd_or_euro(transaction: dict) -> float | str:
     except Exception:
         raise Exception("Произошла ошибка с подключением")
     except KeyError:
-        raise Exception(f"Отсутствует ключ в данных транзакции")
+        raise Exception("Отсутствует ключ в данных транзакции")
     except ValueError:
         raise Exception("Неверный формат суммы в транзакции")
     except requests.exceptions.RequestException:
-        raise Exception(f"Ошибка при подключении к API")
+        raise Exception("Ошибка при подключении к API")
 
 
-
-
-def convert_to_rub(transaction: dict) -> float | None:
+def convert_to_rub(transaction: dict) -> float:
+    """Функция возвращающая значение если валюта рубль"""
     if not isinstance(transaction, dict):
         return "Ошибка: transaction не является словарем."
     elif not transaction:
@@ -54,7 +49,3 @@ def convert_to_rub(transaction: dict) -> float | None:
         return transaction["operationAmount"]["amount"]
     else:
         return get_currency_usd_or_euro(transaction)
-
-print(convert_to_rub(''))
-
-

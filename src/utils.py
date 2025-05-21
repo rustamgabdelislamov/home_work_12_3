@@ -1,7 +1,6 @@
 import json
 
 
-
 def get_accepts_the_transaction(path: str) -> list[dict]:
     """Функция принимает транзакцию в json и возвращает в виде списка словарей"""
     try:
@@ -22,7 +21,3 @@ transactions_list = (get_accepts_the_transaction(path))
 
 if __name__ == "__main__":
     print(transactions_list[0])
-
-
-
-
