@@ -20,7 +20,8 @@ path = '../data/operations.json'
 
 transactions_list = (get_accepts_the_transaction(path))
 
-
+if __name__ == "__main__":
+    print(transactions_list[0])
 
 
 
