@@ -72,3 +72,9 @@ div ok
 div error: division by zero. Inputs: ((2, 0), {})
 div ok
 div error: division by zero. Inputs: ((2, 0), {})
+div ok
+div error: division by zero. Inputs: ((2, 0), {})
+div ok
+div error: division by zero. Inputs: ((2, 0), {})
+div ok
+div error: division by zero. Inputs: ((2, 0), {})
