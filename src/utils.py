@@ -28,7 +28,3 @@ def get_accepts_the_transaction(path: str) -> list[dict]:
     except json.JSONDecodeError as ex:
         logging.error(f'Произошла ошибка {ex}')
         return []
-
-
-
-

@@ -1,7 +1,7 @@
 import csv
 
 
-def get_read_csv(path:str) -> list[dict]:
+def get_read_csv(path: str) -> list[dict]:
     """Считывает финансовые операции из CSV-файла"""
 
     try:
@@ -24,7 +24,3 @@ def get_read_csv(path:str) -> list[dict]:
         return transactions
     except Exception:
         return []
-
-
-
-
