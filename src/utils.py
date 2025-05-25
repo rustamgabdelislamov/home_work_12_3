@@ -30,6 +30,5 @@ def get_accepts_the_transaction(path: str) -> list[dict]:
         return []
 
 
-path = 'data/operations.json'
 
-transactions_list = (get_accepts_the_transaction(path))
+
