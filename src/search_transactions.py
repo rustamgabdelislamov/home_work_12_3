@@ -1,7 +1,7 @@
 import re
 
 from src.read_csv import get_read_csv
-
+from collections import Counter
 
 def bank_transaction_and_search_bar(bank_transactions: list[dict], search_bar: str) -> str | list[dict]:
     """Функция принимает список словарей с данными о банковских операциях и строку поиска и возвращает
@@ -15,5 +15,20 @@ def bank_transaction_and_search_bar(bank_transactions: list[dict], search_bar: s
     if banking_transactions_match != []:
         return f'Операции отфильтрованы по статусу {search_bar} {banking_transactions_match}'
     return f'Статус операции {search_bar} недоступен.'
+
+
+def transactions_and_descriptions(transactions: list[dict], descriptions_search: list) -> str | list[dict]:
+    """Функция принимает список словарей с данными о банковских операциях и список категорий операций и возвращает
+     словарь, в котором ключи — это названия категорий, а значения — это количество операций в каждой категории."""
+    descriptions = [transaction["description"] for transaction in transactions]
+    description_counts = Counter(descriptions)
+
+    return description_counts
+
+
+
+
+
+
 
 
