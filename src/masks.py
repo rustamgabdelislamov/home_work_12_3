@@ -1,4 +1,5 @@
 import logging
+import re
 
 logger = logging.getLogger('masks')
 logger.setLevel(logging.INFO)
@@ -10,8 +11,7 @@ logger.addHandler(file_handler)
 
 def get_mask_card_number(card_number: str) -> str:
     """Функция скрывающая полный номер карты"""
-
-    if len(card_number) == 16 and card_number.isdigit():
+    if len(str(card_number)) == 16:
         logger.info('Проверяем что пользователь ввел правильный номер карты')
 
         return f'{card_number[0:4]} {card_number[4:6]}** **** {card_number[12:]}'
@@ -21,8 +21,7 @@ def get_mask_card_number(card_number: str) -> str:
 
 def get_mask_account(account: str) -> str:
     """Функция скрывающая полный номер счета"""
-
-    if len(account) == 20 and account.isdigit():
+    if len(account) == 20:
         logger.info('Проверяем что пользователь ввел правильный номер счета')
 
         return f'**{account[-4:]}'
