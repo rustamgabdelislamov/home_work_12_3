@@ -1,5 +1,5 @@
-import re
 from datetime import datetime
+
 
 def sort_date(transactions_list: list[dict], ) -> list[dict]:
     """Функция сортировки даты"""
@@ -11,8 +11,3 @@ def sort_date(transactions_list: list[dict], ) -> list[dict]:
         transaction['date'] = dt
         transaction['formatted_date'] = dt.strftime('%d.%m.%Y')
     return transactions_list
-
-
-
-
-

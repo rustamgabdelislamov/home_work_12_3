@@ -1,5 +1,4 @@
 import logging
-import re
 
 logger = logging.getLogger('masks')
 logger.setLevel(logging.INFO)

@@ -22,8 +22,8 @@ if __name__ == '__main__':
         path_file = 'data/transactions_excel.xlsx'
         transactions_list = get_read_xlsx(path_file)
     user_state = input(
-        """Введите статус, по которому необходимо выполнить фильтрацию. 
-            Доступные для фильтрации статусы: EXECUTED, CANCELED, PENDING: """)
+        """Введите статус, по которому необходимо выполнить фильтрацию.
+        Доступные для фильтрации статусы: EXECUTED, CANCELED, PENDING: """)
     while user_state not in ["EXECUTED", "CANCELED", "PENDING"]:
         print(f"Статус операции {user_state} недоступен")
         user_state = input(
@@ -34,30 +34,37 @@ if __name__ == '__main__':
 
     input_sort = input('Отсортировать операции по дате? Да/Нет')
     input_sort_lower = input_sort.lower()
-    if input_sort_lower == 'да':
-        input_sort_true = input('Отсортировать по возрастанию или по убыванию?')
-        input_sort_true_lower = input_sort_true.lower()
-        if input_sort_true_lower == 'по возрастанию':
-            transaction_date_sort = sorted(transaction_date, key=lambda x: x['date'])
-            transaction_date = transaction_date_sort
-        elif input_sort_true_lower == 'по убыванию':
-            transaction_date_sort_ = sorted(transaction_date, key=lambda x: x['date'],reverse=True)
-            transaction_date = transaction_date_sort_
+    while input_sort_lower not in ['да', 'нет']:
+        input_sort = input('Отсортировать операции по дате? Да/Нет')
+        input_sort_lower = input_sort.lower()
+        if input_sort_lower == 'да':
+            input_sort_true = input('Отсортировать по возрастанию или по убыванию?')
+            input_sort_true_lower = input_sort_true.lower()
+            if input_sort_true_lower == 'по возрастанию':
+                transaction_date_sort = sorted(transaction_date, key=lambda x: x['date'])
+                transaction_date = transaction_date_sort
+            elif input_sort_true_lower == 'по убыванию':
+                transaction_date_sort_ = sorted(transaction_date, key=lambda x: x['date'], reverse=True)
+                transaction_date = transaction_date_sort_
 
     input_rub_transactions = input('Выводить только рублевые транзакции? Да/Нет')
     input_rub_transactions_lower = input_rub_transactions.lower()
-    if input_rub_transactions == 'да':
-        transaction_date = [t for t in transaction_date if t.get('currency_code') == 'RUB']
+    while input_rub_transactions_lower not in ['да', 'нет']:
+        input_rub_transactions = input('Выводить только рублевые транзакции? Да/Нет')
+        input_rub_transactions_lower = input_rub_transactions.lower()
+        if input_rub_transactions == 'да':
+            transaction_date = [t for t in transaction_date if t.get('currency_code') == 'RUB']
 
     input_filter_search = input('Отфильтровать список транзакций по определенному слову в описании? Да/Нет')
     input_filter_search_lower = input_filter_search.lower()
 
     if input_filter_search_lower == 'да':
-        input_search = input(f'Доступные слова для поиска: Перевод организации, Перевод с карты на карту,'
-                             f'Открытие вклада, Перевод со счета на счет')
+        input_search = input('Доступные слова для поиска: Перевод организации, Перевод с карты на карту,'
+                             'Открытие вклада, Перевод со счета на счет')
         input_search_lower = input_search.lower()
         transaction_filter = transactions_and_descriptions(transaction_date, input_search_lower)
         transaction_date = transaction_filter
+        print(transaction_date)
     print('Распечатываю итоговый список транзакций...')
     print(f'Всего банковских операций в выборке {len(transaction_date)}')
     for transaction in transaction_date:
