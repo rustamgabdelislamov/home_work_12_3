@@ -64,9 +64,10 @@ if __name__ == '__main__':
         input_search_lower = input_search.lower()
         transaction_filter = transactions_and_descriptions(transaction_date, input_search_lower)
         transaction_date = transaction_filter
-        print(transaction_date)
+
     print('Распечатываю итоговый список транзакций...')
     print(f'Всего банковских операций в выборке {len(transaction_date)}')
+
     for transaction in transaction_date:
         date = transaction["formatted_date"]
         description = transaction["description"]
